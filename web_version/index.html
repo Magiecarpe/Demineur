@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Minesweeper Game</title>
+  <link rel="stylesheet" href="style.css" />
+  <script defer src="settings.js"></script>
+  <script defer src="cell.js"></script>
+  <script defer src="game.js"></script>
+</head>
+<body>
+  <div class="app-shell">
+    <!-- Top Frame (adapted from top_frame in Projet_info.py) -->
+    <header class="top-frame">
+      <h1 class="game-title">Minesweeper</h1>
+      <p class="game-subtitle">Left-click to reveal &middot; Right-click to flag &middot; Click a revealed number to chord</p>
+    </header>
+
+    <main class="main-layout">
+      <!-- Left Frame (adapted from left_frame in Projet_info.py) -->
+      <aside class="left-frame" aria-label="Game controls and status">
+        <div class="stats-group">
+          <div class="stat-card">
+            <span class="stat-label">Cells Left</span>
+            <span id="cell-count" class="stat-value">100</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-label">Mines Left</span>
+            <span id="mines-count" class="stat-value">20</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-label">Time</span>
+            <span id="timer" class="stat-value">00:00</span>
+          </div>
+        </div>
+
+        <div class="controls-group">
+          <label class="control-label" for="difficulty-select">Grid Preset</label>
+          <select id="difficulty-select" class="select-input">
+            <option value="classic" selected>Classic (10&times;10 &middot; 20 mines)</option>
+            <option value="easy">Easy (8&times;8 &middot; 10 mines)</option>
+            <option value="hard">Hard (16&times;16 &middot; 40 mines)</option>
+          </select>
+
+          <button id="flag-mode-btn" type="button" class="btn btn-secondary" aria-pressed="false">
+            <span class="btn-icon" aria-hidden="true">&#128681;</span>
+            <span id="flag-mode-label">Flag Mode: Off</span>
+          </button>
+
+          <button id="restart-btn" type="button" class="btn btn-primary">
+            New Game
+          </button>
+        </div>
+      </aside>
+
+      <!-- Center Frame (adapted from center_frame in Projet_info.py) -->
+      <section class="center-frame" aria-label="Minesweeper board">
+        <div id="board" class="board" role="grid" aria-label="Minesweeper grid"></div>
+      </section>
+    </main>
+  </div>
+
+  <!-- End-of-game Modal (adapted from Cell.good_end / Cell.bad_end in cell.py) -->
+  <div id="end-modal" class="modal-backdrop hidden" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+    <div class="modal-card">
+      <div id="modal-badge" class="modal-badge" aria-hidden="true"></div>
+      <h2 id="modal-title" class="modal-title"></h2>
+      <p id="modal-stats" class="modal-stats"></p>
+      <div class="modal-actions">
+        <button id="modal-restart-btn" type="button" class="btn modal-restart-btn"></button>
+        <button id="modal-close-btn" type="button" class="btn btn-exit">Close</button>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
