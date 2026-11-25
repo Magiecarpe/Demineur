@@ -93,5 +93,5 @@ End_btn.grid(
     column = 0
     )
 
-
+root.mainloop()
 
