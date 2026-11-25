@@ -77,9 +77,14 @@ class Cell :
             self.show_mine()
         else :
             if self.surrounds_mines == 0 :
-                for cell in self.surrounds :
-                    cell.show_cell()
-                self.show_cell()
+                self.is_zero
+                
+# =============================================================================
+#                 for cell in self.surrounds :
+#                     cell.show_cell()
+#                 self.show_cell()
+#             self.show_cell()
+# =============================================================================
             self.show_cell()
             
             if self.is_opened == True and self.surrounds_mines == self.surrounds_flags : # Fonctionnalite non essentielle mais ameliore l'experience
@@ -121,7 +126,19 @@ class Cell :
             self.is_flagged = False
         if Cell.cell_count == 0 :
             Cell.good_end()
+         
             
+    @property
+    def is_zero(self) :
+        for cell in self.surrounds :
+            if cell.is_opened == False : 
+                cell.show_cell()
+                if cell.surrounds_mines == 0 :
+                    cell.is_zero
+            else :
+                cell.show_cell()
+                
+        
             
     def show_mine(self) : # Evènement quand partie perdue / afficher les mines         
         Cell.bad_end()
@@ -208,6 +225,9 @@ class Cell :
         if Cell.cell_count == 0 and Cell.mines_count == 0:
             Cell.good_end()
             
+#        if Cell.cell_count - Cell.mines_count == 0 :
+#            Cell.good_end()
+            
     @property
     def surrounds(self) : # Méthode donnant la liste des cases voisines de self
         cells = [
@@ -230,7 +250,7 @@ class Cell :
             if cell.is_mine :
                 mines +=1
         return mines
-    
+
     @property
     def surrounds_flags(self) : # Méthode donnant le nombre de flags parmi les cases voisines
         flags = 0
@@ -313,5 +333,4 @@ class Cell :
 
         Cell.randomize_mines()
         
-    
-   
+  
