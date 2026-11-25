@@ -1,0 +1,23 @@
+body {
+    background-color: lightgreen;
+}
+
+#top_frame {
+    color:coral;
+    font-size: large;
+    text-align: center;
+}
+
+#main_area {
+    display: flex;
+}
+
+#left_frame {
+    color:brown;
+    font-size: medium;
+}
+
+#center_frame {
+    border: 2px solid blue;
+    color:brown;
+}
